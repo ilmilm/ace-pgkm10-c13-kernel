@@ -1,6 +1,6 @@
-ec8ae378797bf4808d95f0ace4b15ff51c9c385d9c08c4f5626b29691cd4df53  artifact/Image
-1a05117e36818eecd972063e01590de013cd3cf5d87bb313c6e7aac512771880  artifact/Image.gz
-815e095258f8a05bfbee2cef9f0b95ed0fa5bdd9a53d80ba7da0d67f2fc0624e  artifact/SHA256SUMS
-a088584342fa5d288bec238ff1b2f1c93aa6d9c427b9850d3dcb357580012125  artifact/System.map
-fe917b72de069602ea928b5392cae76f3dad16bc04163b4fa5189a9d70ffd967  artifact/config_data.gz
-ddb095d3b33d1cecf5c213630d13e4633b772680df8040d4cb5e495452847a0b  artifact/kernel.config
+ec8ae378797bf4808d95f0ace4b15ff51c9c385d9c08c4f5626b29691cd4df53  /home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/artifact/Image
+8c0deb0d97cc5b1d2ff30bbbfa4ab3881894dce79efed8282523f46069a2c1fe  /home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/artifact/Image.gz
+317c4f6595c030eb9876260bc0cadf99a169a5a214c84f09cb9bea296a157461  /home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/artifact/Module.symvers
+a088584342fa5d288bec238ff1b2f1c93aa6d9c427b9850d3dcb357580012125  /home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/artifact/System.map
+fe917b72de069602ea928b5392cae76f3dad16bc04163b4fa5189a9d70ffd967  /home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/artifact/config_data.gz
+ddb095d3b33d1cecf5c213630d13e4633b772680df8040d4cb5e495452847a0b  /home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/artifact/kernel.config
