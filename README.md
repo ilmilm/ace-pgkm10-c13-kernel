@@ -124,9 +124,26 @@ adb shell getprop ro.boot.vbmeta.device_state   # locked
 
 ## 状态
 
-- lk / vendor_boot：本地已按上述补丁点打好并**校验通过**（四段证书链 VALID、19 项 vendor_boot 检查全 PASS）
-- boot：等 CI 出 `Image.gz` 后打包（`pack_boot.py` + `verify_boot.py` 11 项检查）
-- **尚未真机刷写**：镜像已生成，但没有在设备上跑过。首次刷写前务必确认槽位、并准备 BROM 救砖手段。
+内核已由 Actions 编出（run `40122393288` / `40125068885`，两次产物**逐字节一致**）：
+
+| 项 | 值 |
+|---|---|
+| `Image` | 48044908 字节，sha256 `ec8ae378797bf4808d95f0ace4b15ff51c9c385d9c08c4f5626b29691cd4df53` |
+| `uname -r` 断言 | `5.10.149-android12-9-00010-gb3f24990ab22-ab9978632` 逐字匹配 |
+| KSU/SuSFS 符号 | 331 |
+| `/proc/config.gz` 里的 `CONFIG_KSU` | 0 行（伪装生效） |
+| CRC 审计 | 949 个重叠符号 **drift 0**；389 个"缺失"符号全部由其它厂商模块导出，真正缺失 0 |
+
+三个镜像的静态校验：
+
+| 产物 | 校验 |
+|---|---|
+| `patched-lk.img` | 四段证书链 `VALID` ×4；payload 与 store 相比**只有 16 字节不同** |
+| `patched-vendor_boot.img` | 21 项结构检查 PASS（cpio 983、dtb 逐字节、vbmeta 逐字节） |
+| `patched-boot.img` | 16 项检查 PASS（ramdisk 逐字节、vbmeta 逐字节、gunzip==Image） |
+
+**尚未真机刷写。** 以上全部是静态校验；`green` / `su -c id` 这类结论必须由设备实测给出。
+首次刷写前先确认槽位，并准备好 BROM 救砖手段。
 
 ## 许可
 
