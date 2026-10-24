@@ -91,7 +91,12 @@ jobs:
           cp "$OP/kout/arch/arm64/boot/Image" "$OUT/Image"
           gzip -9 -c "$OUT/Image" > "$OUT/Image.gz"
           cp "$OP/kout/System.map"     "$OUT/System.map"     || true
-          cp "$OP/kout/Module.symvers" "$OUT/Module.symvers" || true
+          # `make Image` writes vmlinux.symvers, not Module.symvers
+          if [ -f "$OP/kout/Module.symvers" ]; then
+            cp "$OP/kout/Module.symvers" "$OUT/Module.symvers"
+          elif [ -f "$OP/kout/vmlinux.symvers" ]; then
+            cp "$OP/kout/vmlinux.symvers" "$OUT/Module.symvers"
+          fi
           cp "$OP/kout/.config"        "$OUT/kernel.config"
           cp "$OP/kout/kernel/config_data.gz" "$OUT/config_data.gz" || true
           sha256sum "$OUT"/* > "$OUT/SHA256SUMS" || true
