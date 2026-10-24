@@ -86,8 +86,11 @@ CI 里有硬断言：`Makefile` 必须是 `5.10.149`、两个上游提交信息�
 # 补丁点全部针对 PGKM10_13.1.0.9 的原厂 lk.img，换固件会直接断言失败
 python scripts/patch_lk.py           --stock ../原版镜像C13 --out out
 python scripts/patch_vendor_boot.py  --stock ../原版镜像C13 --out out
-python scripts/pack_boot.py          ../原版镜像C13/boot.img Image.gz out/patched-boot.img
+python scripts/verify_vendor_boot.py --stock ../原版镜像C13 --out out
+# Image 是 artifact 里**解压后**的内核（不是 Image.gz），脚本自己按原厂风格 gzip
+python scripts/pack_boot.py          ../原版镜像C13/boot.img Image out/patched-boot.img
 python scripts/verify_boot.py        ../原版镜像C13/boot.img out/patched-boot.img Image
+python scripts/crc_audit.py          Module.symvers configs/stock_module_crc.json
 ```
 
 `patch_lk.py` 需要 `pwnage24mtk` 工具链（`parse-part-img.py` / `sign_mtk_cert.py` /
