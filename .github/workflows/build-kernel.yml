@@ -11,6 +11,10 @@ env:
   BRANCH: mt6895_t_13.1.0_oneplus_ace
   KSU_VERSION: "40994"
 
+# the runner publishes the build log + Image back into ci-logs / ci-artifacts
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -116,6 +120,7 @@ jobs:
       # so the runner publishes through api.github.com into a branch as well.
       - name: Publish artifacts to branch (best effort)
         if: success()
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
@@ -128,6 +133,7 @@ jobs:
 
       - name: Publish build log (always)
         if: always()
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
