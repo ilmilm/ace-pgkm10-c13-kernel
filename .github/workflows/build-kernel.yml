@@ -74,8 +74,9 @@ jobs:
           OP: ${{ github.workspace }}/op
           TC: ${{ runner.temp }}/tc/clang
         run: |
+          set -o pipefail
           mkdir -p "$OP"
-          bash scripts/build_ace_kernel.sh "$OP"
+          bash scripts/build_ace_kernel.sh "$OP" 2>&1 | tee /tmp/build.log
 
       - name: Collect artifacts
         run: |
@@ -110,3 +111,32 @@ jobs:
           name: ace-c13-kernel
           path: artifact/
           retention-days: 14
+
+      # Artifact/log blob storage is unreachable from the maintainer's network,
+      # so the runner publishes through api.github.com into a branch as well.
+      - name: Publish artifacts to branch (best effort)
+        if: success()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -eux
+          python3 scripts/ci_publish.py ci-artifacts \
+            "ci: kernel artifact for run ${{ github.run_id }}" \
+            artifact/Image artifact/Image.gz artifact/Module.symvers \
+            artifact/System.map artifact/kernel.config artifact/SHA256SUMS
+
+      - name: Publish build log (always)
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -eux
+          cp /tmp/build.log /tmp/build.log.txt 2>/dev/null || true
+          tail -c 300000 /tmp/build.log > /tmp/build-tail.log 2>/dev/null || \
+            echo "no build log" > /tmp/build-tail.log
+          python3 scripts/ci_publish.py ci-logs \
+            "ci: build log for run ${{ github.run_id }} (${{ job.status }})" \
+            /tmp/build-tail.log
+
