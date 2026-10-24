@@ -14,6 +14,7 @@ import base64
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -21,22 +22,38 @@ TOKEN = os.environ["GITHUB_TOKEN"]
 REPO = os.environ["GITHUB_REPOSITORY"]
 
 
-def api(path, method="GET", payload=None):
+def api(path, method="GET", payload=None, attempts=4):
     url = "https://api.github.com/" + path
     data = json.dumps(payload).encode() if payload is not None else None
-    req = urllib.request.Request(url, data=data, method=method, headers={
-        "Authorization": "Bearer " + TOKEN,
-        "Accept": "application/vnd.github+json",
-        "Content-Type": "application/json",
-        "User-Agent": "ace-c13-ci-publish",
-    })
-    try:
-        with urllib.request.urlopen(req, timeout=300) as r:
-            body = r.read()
-            return json.loads(body) if body else {}
-    except urllib.error.HTTPError as e:
-        print("HTTP", e.code, e.read().decode()[:400], file=sys.stderr)
-        raise
+    last = None
+    for i in range(attempts):
+        req = urllib.request.Request(url, data=data, method=method, headers={
+            "Authorization": "Bearer " + TOKEN,
+            "Accept": "application/vnd.github+json",
+            "Content-Type": "application/json",
+            "User-Agent": "ace-c13-ci-publish",
+        })
+        try:
+            with urllib.request.urlopen(req, timeout=300) as r:
+                body = r.read()
+                return json.loads(body) if body else {}
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode()[:400]
+            if e.code in (500, 502, 503, 504) and i + 1 < attempts:
+                print(f"  retry {i+1} after HTTP {e.code}", file=sys.stderr)
+                time.sleep(5 * (i + 1))
+                last = e
+                continue
+            print("HTTP", e.code, detail, file=sys.stderr)
+            raise
+        except Exception as e:            # timeouts, resets
+            last = e
+            if i + 1 < attempts:
+                print(f"  retry {i+1} after {type(e).__name__}", file=sys.stderr)
+                time.sleep(5 * (i + 1))
+                continue
+            raise
+    raise last
 
 
 def main():

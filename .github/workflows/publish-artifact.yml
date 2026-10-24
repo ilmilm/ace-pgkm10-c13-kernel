@@ -1,0 +1,46 @@
+name: publish-c13-artifact
+
+# The build runner's artifact exists, but the maintainer's network cannot reach
+# Actions blob storage.  This tiny workflow downloads an existing run's artifact
+# (runners *can* reach blob storage) and republishes it into the ci-artifacts
+# branch through api.github.com.
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "build run id to republish (e.g. 40122393288)"
+        required: true
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: ace-c13-kernel
+          run-id: ${{ inputs.run_id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: artifact
+
+      - name: Show artifact
+        run: ls -lh artifact
+
+      - name: Publish to ci-artifacts branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -eux
+          sha256sum artifact/* > artifact/SHA256SUMS || true
+          python3 scripts/ci_publish.py ci-artifacts \
+            "ci: artifacts from build run ${{ inputs.run_id }}" \
+            artifact/Image.gz artifact/Module.symvers artifact/kernel.config \
+            artifact/SHA256SUMS artifact/config_data.gz

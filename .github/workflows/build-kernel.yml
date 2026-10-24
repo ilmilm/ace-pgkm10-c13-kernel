@@ -126,10 +126,12 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           set -eux
+          # Image.gz only: the raw Image is 46 MB and blows the API payload
+          # through base64; gunzip locally instead.
           python3 scripts/ci_publish.py ci-artifacts \
             "ci: kernel artifact for run ${{ github.run_id }}" \
-            artifact/Image artifact/Image.gz artifact/Module.symvers \
-            artifact/System.map artifact/kernel.config artifact/SHA256SUMS
+            artifact/Image.gz artifact/Module.symvers artifact/kernel.config \
+            artifact/SHA256SUMS artifact/config_data.gz
 
       - name: Publish build log (always)
         if: always()
