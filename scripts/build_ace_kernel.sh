@@ -213,6 +213,16 @@ for c in LTO_CLANG_FULL CFI_CLANG CFI_CLANG_SHADOW SHADOW_CALL_STACK \
     echo "FATAL: CONFIG_${c} was dropped -> vendor module CRCs will not match" >&2
     exit 1; }
 done
+# The factory .config trims unused ksyms against an OnePlus buildbot path that
+# does not exist here; we disable the trimming instead (see ksu_susfs.config).
+if grep -q '^CONFIG_TRIM_UNUSED_KSYMS=y$' "$O/.config"; then
+  echo "FATAL: CONFIG_TRIM_UNUSED_KSYMS came back -> autoksyms.h will need the buildbot whitelist" >&2
+  exit 1
+fi
+if grep -q '^CONFIG_UNUSED_KSYMS_WHITELIST="/buildbot' "$O/.config"; then
+  echo "FATAL: UNUSED_KSYMS_WHITELIST still points at the OnePlus buildbot path" >&2
+  exit 1
+fi
 echo "all critical configs present"
 
 # -------------------------------------------------------------------- build
