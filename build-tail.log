@@ -1,0 +1,316 @@
+
+=== toolchain ===
+Android (7284624, based on r416183b) clang version 12.0.5 (https://android.googlesource.com/toolchain/llvm-project c935d99d7cf2016289302412d708641d52d2f7ee)
+Target: x86_64-unknown-linux-gnu
+
+=== sources ===
+Cloning into '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel'...
+Updating files:  27% (22098/79351)Updating files:  28% (22219/79351)Updating files:  29% (23012/79351)Updating files:  30% (23806/79351)Updating files:  31% (24599/79351)Updating files:  32% (25393/79351)Updating files:  33% (26186/79351)Updating files:  34% (26980/79351)Updating files:  35% (27773/79351)Updating files:  36% (28567/79351)Updating files:  37% (29360/79351)Updating files:  38% (30154/79351)Updating files:  39% (30947/79351)Updating files:  39% (31179/79351)Updating files:  40% (31741/79351)Updating files:  41% (32534/79351)Updating files:  42% (33328/79351)Updating files:  43% (34121/79351)Updating files:  44% (34915/79351)Updating files:  45% (35708/79351)Updating files:  46% (36502/79351)Updating files:  47% (37295/79351)Updating files:  48% (38089/79351)Updating files:  49% (38882/79351)Updating files:  50% (39676/79351)Updating files:  51% (40470/79351)Updating files:  52% (41263/79351)Updating files:  53% (42057/79351)Updating files:  54% (42850/79351)Updating files:  55% (43644/79351)Updating files:  56% (44437/79351)Updating files:  56% (44494/79351)Updating files:  57% (45231/79351)Updating files:  58% (46024/79351)Updating files:  59% (46818/79351)Updating files:  60% (47611/79351)Updating files:  61% (48405/79351)Updating files:  62% (49198/79351)Updating files:  63% (49992/79351)Updating files:  64% (50785/79351)Updating files:  65% (51579/79351)Updating files:  66% (52372/79351)Updating files:  67% (53166/79351)Updating files:  68% (53959/79351)Updating files:  69% (54753/79351)Updating files:  69% (55156/79351)Updating files:  70% (55546/79351)Updating files:  71% (56340/79351)Updating files:  72% (57133/79351)Updating files:  73% (57927/79351)Updating files:  74% (58720/79351)Updating files:  75% (59514/79351)Updating files:  76% (60307/79351)Updating files:  77% (61101/79351)Updating files:  78% (61894/79351)Updating files:  79% (62688/79351)Updating files:  80% (63481/79351)Updating files:  81% (64275/79351)Updating files:  82% (65068/79351)Updating files:  83% (65862/79351)Updating files:  84% (66655/79351)Updating files:  85% (67449/79351)Updating files:  86% (68242/79351)Updating files:  87% (69036/79351)Updating files:  87% (69176/79351)Updating files:  88% (69829/79351)Updating files:  89% (70623/79351)Updating files:  90% (71416/79351)Updating files:  91% (72210/79351)Updating files:  92% (73003/79351)Updating files:  93% (73797/79351)Updating files:  94% (74590/79351)Updating files:  95% (75384/79351)Updating files:  96% (76177/79351)Updating files:  97% (76971/79351)Updating files:  98% (77764/79351)Updating files:  99% (78558/79351)Updating files: 100% (79351/79351)Updating files: 100% (79351/79351), done.
+kernel: b2ed0599a  Synchronize code for oneplus PGKM10_13.1.0.9
+Cloning into '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/modules'...
+vendor: 5f21048  Synchronize code for oneplus PGKM10_13.1.0.9
+source pin verified: kernel+vendor == PGKM10_13.1.0.9
+Cloning into '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/susfs510'...
+susfs: f43926d  KernelSU: Sync with the official KernelSU main repo
+Cloning into '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/sukisu'...
+ksu  : ce75122b  fix
+
+=== susfs files ===
+
+=== susfs patch ===
+patching file drivers/input/input.c
+patching file fs/Makefile
+patching file fs/exec.c
+Hunk #2 succeeded at 1866 (offset -8 lines).
+Hunk #3 succeeded at 1890 (offset -8 lines).
+Hunk #4 succeeded at 1992 (offset -8 lines).
+patching file fs/namei.c
+Hunk #4 succeeded at 549 (offset -2 lines).
+Hunk #5 succeeded at 1517 (offset -18 lines).
+Hunk #6 succeeded at 1541 (offset -18 lines).
+Hunk #7 succeeded at 1553 (offset -18 lines).
+Hunk #8 succeeded at 1564 (offset -18 lines).
+Hunk #9 succeeded at 1593 (offset -18 lines).
+Hunk #10 succeeded at 1605 (offset -18 lines).
+Hunk #11 succeeded at 1650 (offset -18 lines).
+Hunk #12 succeeded at 1681 (offset -18 lines).
+Hunk #13 succeeded at 1702 (offset -18 lines).
+Hunk #14 succeeded at 1721 (offset -18 lines).
+Hunk #15 succeeded at 2039 (offset -18 lines).
+Hunk #16 succeeded at 2308 (offset -18 lines).
+Hunk #17 succeeded at 2500 (offset -20 lines).
+Hunk #18 succeeded at 3217 (offset -71 lines).
+Hunk #19 succeeded at 3348 (offset -70 lines).
+Hunk #20 succeeded at 3528 (offset -69 lines).
+Hunk #21 succeeded at 3579 (offset -69 lines).
+Hunk #22 succeeded at 3613 (offset -69 lines).
+Hunk #23 succeeded at 3634 (offset -69 lines).
+Hunk #24 succeeded at 4820 (offset -97 lines).
+Hunk #25 succeeded at 4834 (offset -97 lines).
+Hunk #26 succeeded at 4861 (offset -97 lines).
+patching file fs/namespace.c
+Hunk #2 succeeded at 125 (offset -9 lines).
+Hunk #3 succeeded at 138 (offset -9 lines).
+Hunk #4 succeeded at 206 (offset -9 lines).
+Hunk #5 succeeded at 755 (offset -5 lines).
+Hunk #6 succeeded at 1112 (offset -5 lines).
+Hunk #7 succeeded at 1208 (offset -5 lines).
+Hunk #8 succeeded at 1261 (offset -5 lines).
+Hunk #9 succeeded at 3548 (offset -107 lines).
+Hunk #10 succeeded at 4344 (offset -110 lines).
+patching file fs/notify/fdinfo.c
+patching file fs/open.c
+patching file fs/proc/base.c
+Hunk #1 succeeded at 97 (offset -2 lines).
+Hunk #2 succeeded at 1762 (offset -60 lines).
+Hunk #3 succeeded at 1775 (offset -60 lines).
+Hunk #4 succeeded at 2377 (offset -88 lines).
+patching file fs/proc/bootconfig.c
+patching file fs/proc/fd.c
+patching file fs/proc/task_mmu.c
+Hunk #1 succeeded at 19 (offset -1 lines).
+Hunk #2 succeeded at 320 (offset -1 lines).
+Hunk #3 succeeded at 342 (offset -1 lines).
+Hunk #4 succeeded at 930 with fuzz 1 (offset -14 lines).
+Hunk #5 succeeded at 993 (offset -20 lines).
+Hunk #6 succeeded at 1062 (offset -20 lines).
+Hunk #7 succeeded at 1777 (offset -22 lines).
+Hunk #8 succeeded at 1789 (offset -22 lines).
+patching file fs/proc_namespace.c
+patching file fs/read_write.c
+patching file fs/readdir.c
+patching file fs/stat.c
+patching file fs/statfs.c
+patching file fs/super.c
+Hunk #2 succeeded at 1062 (offset -23 lines).
+Hunk #3 succeeded at 1082 (offset -23 lines).
+patching file kernel/kallsyms.c
+Hunk #2 succeeded at 695 (offset -4 lines).
+patching file kernel/reboot.c
+Hunk #1 succeeded at 301 (offset -1 lines).
+Hunk #2 succeeded at 319 (offset -1 lines).
+patching file kernel/sys.c
+Hunk #2 succeeded at 648 with fuzz 2 (offset -1 lines).
+Hunk #3 succeeded at 1267 (offset -11 lines).
+patching file mm/memory.c
+Hunk #1 succeeded at 73 (offset -1 lines).
+Hunk #2 succeeded at 5557 (offset -111 lines).
+patching file security/selinux/avc.c
+Hunk #2 succeeded at 745 (offset 9 lines).
+patching file security/selinux/hooks.c
+Hunk #2 succeeded at 6553 (offset -39 lines).
+Hunk #3 succeeded at 7143 (offset -41 lines).
+patching file security/selinux/selinuxfs.c
+Hunk #3 succeeded at 738 (offset -1 lines).
+Hunk #4 succeeded at 891 (offset -1 lines).
+Hunk #5 succeeded at 1001 (offset -1 lines).
+rejects: 0
+susfs patch self-consistency: OK
+
+=== KernelSU builtin ===
+
+=== manual hooks ===
+installing SukiSU builtin manual hooks under /home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel
+  already hooked: ksu_handle_execveat / do_execveat_common
+  already hooked: ksu_handle_faccessat / sys_faccessat
+  already hooked: ksu_handle_stat / sys_newfstatat
+  already hooked: ksu_handle_sys_reboot / sys_reboot
+all manual hooks present
+hook call sites verified: 4/4
+
+=== config ===
+make: Entering directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel'
+make[1]: Entering directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kout'
+  GEN     Makefile
+  HOSTCC  scripts/basic/fixdep
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/confdata.o
+  HOSTCC  scripts/kconfig/expr.o
+  LEX     scripts/kconfig/lexer.lex.c
+  YACC    scripts/kconfig/parser.tab.[ch]
+  HOSTCC  scripts/kconfig/lexer.lex.o
+  HOSTCC  scripts/kconfig/parser.tab.o
+  HOSTCC  scripts/kconfig/preprocess.o
+  HOSTCC  scripts/kconfig/symbol.o
+  HOSTCC  scripts/kconfig/util.o
+  HOSTLD  scripts/kconfig/conf
+drivers/misc/mediatek/imgsensor/Kconfig:74:warning: multi-line strings not supported
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:2:warning: ignoring type redefinition of 'CUSTOM_KERNEL_SENSORHUB' from 'tristate' to 'bool'
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:14:warning: no new line at end of file
+drivers/misc/mediatek/sensors-1.0/sensorHub/nanohub/Kconfig:1:warning: ignoring type redefinition of 'NANOHUB' from 'bool' to 'tristate'
+drivers/misc/aw8697_haptic/Kconfig:1:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:2:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:3:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:4:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:6:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:7:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:8:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:9:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:10:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:4:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:5:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:6:warning: ignoring unsupported character ''
+drivers/input/uff_fp_drivers/Kconfig:7:warning: ignoring type redefinition of 'OPLUS_FINGERPRINT_GKI_ENABLE' from 'tristate' to 'bool'
+drivers/gpu/drm/mediatek/Kconfig:32:warning: no new line at end of file
+sound/soc/codecs/audio/Kconfig:20:warning: no new line at end of file
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kout'
+make: Leaving directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel'
+make: Entering directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel'
+make[1]: Entering directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kout'
+  GEN     Makefile
+drivers/misc/mediatek/imgsensor/Kconfig:74:warning: multi-line strings not supported
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:2:warning: ignoring type redefinition of 'CUSTOM_KERNEL_SENSORHUB' from 'tristate' to 'bool'
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:14:warning: no new line at end of file
+drivers/misc/mediatek/sensors-1.0/sensorHub/nanohub/Kconfig:1:warning: ignoring type redefinition of 'NANOHUB' from 'bool' to 'tristate'
+drivers/misc/aw8697_haptic/Kconfig:1:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:2:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:3:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:4:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:6:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:7:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:8:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:9:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:10:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:4:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:5:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:6:warning: ignoring unsupported character ''
+drivers/input/uff_fp_drivers/Kconfig:7:warning: ignoring type redefinition of 'OPLUS_FINGERPRINT_GKI_ENABLE' from 'tristate' to 'bool'
+drivers/gpu/drm/mediatek/Kconfig:32:warning: no new line at end of file
+sound/soc/codecs/audio/Kconfig:20:warning: no new line at end of file
+.config:7525:warning: override: reassigning to symbol KSU
+.config:7526:warning: override: reassigning to symbol KSU_FEATURE_ADBROOT
+.config:7527:warning: override: reassigning to symbol KSU_DEBUG
+.config:7530:warning: override: reassigning to symbol KPM
+.config:7531:warning: override: reassigning to symbol KSU_SUSFS
+.config:7532:warning: override: reassigning to symbol KSU_SUSFS_SUS_PATH
+.config:7533:warning: override: reassigning to symbol KSU_SUSFS_SUS_MOUNT
+.config:7534:warning: override: reassigning to symbol KSU_SUSFS_SUS_KSTAT
+.config:7535:warning: override: reassigning to symbol KSU_SUSFS_SPOOF_UNAME
+.config:7536:warning: override: reassigning to symbol KSU_SUSFS_ENABLE_LOG
+.config:7537:warning: override: reassigning to symbol KSU_SUSFS_HIDE_KSU_SUSFS_SYMBOLS
+.config:7538:warning: override: reassigning to symbol KSU_SUSFS_SPOOF_CMDLINE_OR_BOOTCONFIG
+.config:7539:warning: override: reassigning to symbol KSU_SUSFS_OPEN_REDIRECT
+.config:7540:warning: override: reassigning to symbol KSU_SUSFS_SUS_MAP
+.config:7541:warning: override: reassigning to symbol LTO_CLANG
+.config:7542:warning: override: reassigning to symbol LTO_CLANG_FULL
+.config:7542:warning: override: LTO_CLANG_FULL changes choice state
+.config:7543:warning: override: reassigning to symbol CFI_CLANG
+.config:7544:warning: override: reassigning to symbol CFI_CLANG_SHADOW
+.config:7545:warning: override: reassigning to symbol SHADOW_CALL_STACK
+.config:7546:warning: override: reassigning to symbol KASAN
+.config:7547:warning: override: reassigning to symbol KASAN_HW_TAGS
+.config:7547:warning: override: KASAN_HW_TAGS changes choice state
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kout'
+make: Leaving directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel'
+#!/bin/sh
+echo "-android12-9-00010-gb3f24990ab22-ab9978632"
+VERSION = 5
+PATCHLEVEL = 10
+SUBLEVEL = 149
+make: Entering directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel'
+make[1]: Entering directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kout'
+  GEN     Makefile
+drivers/misc/mediatek/imgsensor/Kconfig:74:warning: multi-line strings not supported
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:2:warning: ignoring type redefinition of 'CUSTOM_KERNEL_SENSORHUB' from 'tristate' to 'bool'
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:14:warning: no new line at end of file
+drivers/misc/mediatek/sensors-1.0/sensorHub/nanohub/Kconfig:1:warning: ignoring type redefinition of 'NANOHUB' from 'bool' to 'tristate'
+drivers/misc/aw8697_haptic/Kconfig:1:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:2:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:3:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:4:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:6:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:7:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:8:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:9:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:10:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:4:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:5:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:6:warning: ignoring unsupported character ''
+drivers/input/uff_fp_drivers/Kconfig:7:warning: ignoring type redefinition of 'OPLUS_FINGERPRINT_GKI_ENABLE' from 'tristate' to 'bool'
+drivers/gpu/drm/mediatek/Kconfig:32:warning: no new line at end of file
+sound/soc/codecs/audio/Kconfig:20:warning: no new line at end of file
+#
+# No change to .config
+#
+make[1]: Leaving directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kout'
+make: Leaving directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel'
+kernelrelease: 5.10.149-android12-9-00010-gb3f24990ab22-ab9978632
+167:$(obj)/config_data: arch/arm64/configs/stock_defconfig FORCE
+168-	$(call filechk,cat)
+
+=== config guard ===
+all critical configs present
+
+=== build ===
+make: Entering directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel'
+make[1]: Entering directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kout'
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+drivers/misc/mediatek/imgsensor/Kconfig:74:warning: multi-line strings not supported
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:2:warning: ignoring type redefinition of 'CUSTOM_KERNEL_SENSORHUB' from 'tristate' to 'bool'
+drivers/misc/mediatek/sensors-1.0/sensorHub/Kconfig:14:warning: no new line at end of file
+drivers/misc/mediatek/sensors-1.0/sensorHub/nanohub/Kconfig:1:warning: ignoring type redefinition of 'NANOHUB' from 'bool' to 'tristate'
+drivers/misc/aw8697_haptic/Kconfig:1:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:2:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:3:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:4:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:6:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:7:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:8:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:9:warning: ignoring unsupported character ''
+drivers/misc/aw8697_haptic/Kconfig:10:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:4:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:5:warning: ignoring unsupported character ''
+drivers/input/touchscreen/GT9966/Kconfig:6:warning: ignoring unsupported character ''
+drivers/input/uff_fp_drivers/Kconfig:7:warning: ignoring type redefinition of 'OPLUS_FINGERPRINT_GKI_ENABLE' from 'tristate' to 'bool'
+drivers/gpu/drm/mediatek/Kconfig:32:warning: no new line at end of file
+sound/soc/codecs/audio/Kconfig:20:warning: no new line at end of file
+  GEN     Makefile
+  WRAP    arch/arm64/include/generated/uapi/asm/kvm_para.h
+  WRAP    arch/arm64/include/generated/uapi/asm/errno.h
+  WRAP    arch/arm64/include/generated/uapi/asm/ioctls.h
+  WRAP    arch/arm64/include/generated/uapi/asm/ioctl.h
+  WRAP    arch/arm64/include/generated/uapi/asm/ipcbuf.h
+  WRAP    arch/arm64/include/generated/uapi/asm/msgbuf.h
+  WRAP    arch/arm64/include/generated/uapi/asm/poll.h
+  WRAP    arch/arm64/include/generated/uapi/asm/resource.h
+  WRAP    arch/arm64/include/generated/uapi/asm/sembuf.h
+  WRAP    arch/arm64/include/generated/uapi/asm/shmbuf.h
+  WRAP    arch/arm64/include/generated/uapi/asm/siginfo.h
+  WRAP    arch/arm64/include/generated/uapi/asm/socket.h
+  WRAP    arch/arm64/include/generated/uapi/asm/sockios.h
+  WRAP    arch/arm64/include/generated/uapi/asm/stat.h
+  WRAP    arch/arm64/include/generated/uapi/asm/termbits.h
+  WRAP    arch/arm64/include/generated/uapi/asm/swab.h
+  WRAP    arch/arm64/include/generated/uapi/asm/termios.h
+  UPD     include/config/kernel.release
+  HOSTCC  scripts/dtc/dtc.o
+  WRAP    arch/arm64/include/generated/uapi/asm/types.h
+  HOSTCC  scripts/dtc/flattree.o
+  HOSTCC  scripts/dtc/fstree.o
+  UPD     include/generated/uapi/linux/version.h
+  HOSTCC  scripts/dtc/data.o
+  HOSTCC  scripts/dtc/livetree.o
+  HOSTCC  scripts/dtc/treesource.o
+  HOSTCC  scripts/dtc/srcpos.o
+  HOSTCC  scripts/dtc/checks.o
+  GEN     include/generated/autoksyms.h
+ERROR: '/buildbot/src/android/common-android12-5.10-2022-12/out/android12-5.10/common/abi_symbollist.raw' whitelist file not found
+make[1]: *** [/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel/Makefile:1285: include/generated/autoksyms.h] Error 1
+make[1]: *** Waiting for unfinished jobs....
+  HOSTCC  scripts/dtc/util.o
+  LEX     scripts/dtc/dtc-lexer.lex.c
+  YACC    scripts/dtc/dtc-parser.tab.[ch]
+  HOSTCC  scripts/dtc/yamltree.o
+  HOSTCC  scripts/dtc/dtc-lexer.lex.o
+  HOSTCC  scripts/dtc/dtc-parser.tab.o
+  HOSTLD  scripts/dtc/dtc
+make[1]: Leaving directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kout'
+make: *** [Makefile:185: __sub-make] Error 2
+make: Leaving directory '/home/runner/work/ace-pgkm10-c13-kernel/ace-pgkm10-c13-kernel/op/kernel'
