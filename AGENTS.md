@@ -6,8 +6,10 @@
 
 ```
 设备    OnePlus Ace  PGKM10 / OP5565 / MT6895
-固件    PGKM10_13.1.0.9 (CN01)   ColorOS 13 / Android 13
+固件    PGKM10_13.1.0.190 (CN01)   ColorOS 13 / Android 13   ← 真机实测
 内核    5.10.149-android12-9-00010-gb3f24990ab22-ab9978632
+源码    kernel/vendor 均 pin 到 PGKM10_13.1.0.9 快照
+        （OnePlusOSS 该机型唯一的 5.10.149 快照；CRC 已按设备自带模块核对 drift 0）
 ```
 
 **只支持这一个组合。** 不讨论、不支持、不引入其他固件版本或内核版本。
@@ -74,6 +76,9 @@ adb shell getprop ro.boot.slot_suffix           # 刷之前必须查
 
 ## 当前状态（诚实记录）
 
-- lk / vendor_boot：已生成并本地校验通过（证书链 + 19 项结构检查）
-- boot：等 CI 的 `Image.gz` 后打包
-- **未做真机刷写验证**。任何"已可用/已 root"的结论都必须来自真实设备输出，不能靠推断。
+- 三个镜像已生成、静态校验通过、**并已在真机（PGKM10_13.1.0.190，`_b` 槽）刷写验证**：
+  `green` / `locked` / `device_state=locked` / `su -c id` = `uid=0(root) context=u:r:ksu:s0`，
+  `ksud susfs status` = `true`，三个分区内容与本地产物 sha256 逐个相同。
+  输出见 [`docs/verify-on-device.md`](docs/verify-on-device.md)。
+- 未验证：Play Integrity / TEE、Zygisk 与模块功能、长期稳定性、OTA（升级会覆盖这三个分区）。
+- 改完代码重新出镜像后，上面这些结论自然作废，必须重新实测。

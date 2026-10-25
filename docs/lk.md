@@ -1,7 +1,11 @@
-# lk 补丁原理与地址表（PGKM10_13.1.0.9）
+# lk 补丁原理与地址表（ColorOS 13 / 5.10.149 代）
 
 本文记录 **ColorOS 13 / 5.10.149** 这一版 `lk.img` 的补丁点、推导过程和验证结果。
 和上游 500（5.10.209）的地址**完全不同**，不要混用。
+
+地址是在本仓库 `原版镜像C13/lk.img`（设备实测为 `PGKM10_13.1.0.190`，`_b` 槽）上推出来并**真机验证过**的：
+刷完后 `ro.boot.verifiedbootstate=green`、`ro.boot.vbmeta.device_state=locked`，见
+[`verify-on-device.md`](verify-on-device.md)。
 
 ## 一、镜像结构
 

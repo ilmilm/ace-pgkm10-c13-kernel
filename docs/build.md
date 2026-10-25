@@ -50,6 +50,11 @@ cfg = gzip.decompress(kd[s+8:e])                        # 6722 行完整 .config
 `LTO_CLANG_FULL / CFI_CLANG / CFI_CLANG_SHADOW / SHADOW_CALL_STACK / KASAN_HW_TAGS /
 MODVERSIONS / ARM64_4K_PAGES` 全是 `=y`，和上游 500 一致。
 
+> 这份 config 带 `CONFIG_TRIM_UNUSED_KSYMS=y`，whitelist 指向 OnePlus GKI buildbot 的绝对路径
+> （`/buildbot/src/android/common-android12-5.10-2022-12/...`），本地构建会因为找不到该文件
+> 在 `GEN autoksyms.h` 直接失败。`configs/ksu_susfs.config` 里把它关掉：不裁剪只会多导出符号，
+> 不会让任何一个厂商模块的 import 失败，也不影响任何符号 CRC。CI 有断言防止它被改回来。
+
 ## 三条不能动的硬约束
 
 **1. 源码必须钉到 13.1.0.9 对应的提交**

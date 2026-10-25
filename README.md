@@ -1,16 +1,20 @@
-# 一加 Ace (PGKM10 / OP5565 / MT6895) — ColorOS 13 / PGKM10_13.1.0.9
+# 一加 Ace (PGKM10 / OP5565 / MT6895) — ColorOS 13 / PGKM10_13.1.0.190
 
 本仓库是 [`ilmilm/ace-pgkm10-kernel`](https://github.com/ilmilm/ace-pgkm10-kernel)（ColorOS 15 / 5.10.209）的
 **ColorOS 13 版本**：同一套「锁 BL 状态伪装 + 内建 KernelSU + SuSFS」思路，针对另一个固件重新做了一套 pin、
 补丁点和产物。两个仓库互不通用，镜像不能混刷。
 
 ```
-固件    PGKM10_13.1.0.9 (CN01)   ColorOS 13 / Android 13
+设备    PGKM10_13.1.0.190 (CN01)   ColorOS 13 / Android 13   ← 真机实测 build id
 内核    5.10.149-android12-9-00010-gb3f24990ab22-ab9978632
 内核戳  #1 SMP PREEMPT Thu Apr 20 08:45:45 UTC 2023   （原厂值，直接复用）
+源码    kernel/vendor 均 pin 到 PGKM10_13.1.0.9 快照（OnePlusOSS 该机型唯一的 5.10.149 快照）
 ```
 
-> 只支持这一个组合。换固件就重做整套 pin。
+**已在真机验证**：`green` / `locked` / `device_state=locked` / `su -c id` 全绿，三个分区内容与本地产物
+逐字节一致。验收记录见 [`docs/verify-on-device.md`](docs/verify-on-device.md)。
+
+> 只支持这个 5.10.149 代。换固件代（5.10.110 / 5.10.168 / 5.10.209…）就重做整套 pin 和补丁点。
 
 ## 三个分区的关系
 
@@ -124,17 +128,34 @@ adb shell getprop ro.boot.vbmeta.device_state   # locked
 
 ## 状态
 
-内核已由 Actions 编出（run `40122393288` / `40125068885`，两次产物**逐字节一致**）：
+**已在真机刷写并验证通过**（2026-10-25，`_b` 槽，build `PGKM10_13.1.0.190(CN01)`）。
+完整输出见 [`docs/verify-on-device.md`](docs/verify-on-device.md)。
+
+| 验收项 | 实测 |
+|---|---|
+| `ro.boot.verifiedbootstate` | `green` |
+| `ro.boot.flash.locked` | `1` |
+| `ro.boot.vbmeta.device_state` | `locked` |
+| SELinux | `Enforcing` |
+| `uname -r` | `5.10.149-android12-9-00010-gb3f24990ab22-ab9978632` |
+| `uname -v` | `#1 SMP PREEMPT Thu Apr 20 08:45:45 UTC 2023` |
+| `su -c id` | `uid=0(root) ... context=u:r:ksu:s0` |
+| `ksud --version` | `4.2.1-r1 (uapi: 6)` |
+| `ksud susfs status` | `true` |
+| 三个分区内容 | 与本地产物 sha256 **逐个相同** |
+
+构建侧（run `40122393288` / `40125068885`，两次产物逐字节一致）：
 
 | 项 | 值 |
 |---|---|
 | `Image` | 48044908 字节，sha256 `ec8ae378797bf4808d95f0ace4b15ff51c9c385d9c08c4f5626b29691cd4df53` |
-| `uname -r` 断言 | `5.10.149-android12-9-00010-gb3f24990ab22-ab9978632` 逐字匹配 |
+| `uname -r` 断言 | 逐字等于原厂串 |
 | KSU/SuSFS 符号 | 331 |
-| `/proc/config.gz` 里的 `CONFIG_KSU` | 0 行（伪装生效） |
+| `/proc/config.gz` 里的 `CONFIG_KSU` | 0 行（设备上实测也是 0） |
 | CRC 审计 | 949 个重叠符号 **drift 0**；389 个"缺失"符号全部由其它厂商模块导出，真正缺失 0 |
+| 设备侧模块 | 470 个全部加载，dmesg 无 `disagrees` / `version magic` / `Unknown symbol` |
 
-三个镜像的静态校验：
+静态校验：
 
 | 产物 | 校验 |
 |---|---|
@@ -142,8 +163,10 @@ adb shell getprop ro.boot.vbmeta.device_state   # locked
 | `patched-vendor_boot.img` | 21 项结构检查 PASS（cpio 983、dtb 逐字节、vbmeta 逐字节） |
 | `patched-boot.img` | 16 项检查 PASS（ramdisk 逐字节、vbmeta 逐字节、gunzip==Image） |
 
-**尚未真机刷写。** 以上全部是静态校验；`green` / `su -c id` 这类结论必须由设备实测给出。
-首次刷写前先确认槽位，并准备好 BROM 救砖手段。
+**注意**：装完 SukiSU 管理器后必须在弹窗里给一次 root 授权，否则 `su` 报 `inaccessible or not found`——
+那是没授权，不是内核问题。
+
+未验证：Play Integrity / TEE、Zygisk 与模块功能、长期稳定性、OTA（升级会覆盖这三个分区）。
 
 ## 许可
 
