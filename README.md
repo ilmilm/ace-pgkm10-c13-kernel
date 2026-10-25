@@ -16,6 +16,16 @@
 
 > 只支持这个 5.10.149 代。换固件代（5.10.110 / 5.10.168 / 5.10.209…）就重做整套 pin 和补丁点。
 
+## 下载（Releases）
+
+| Release | 内容 | 用途 |
+|---|---|---|
+| **[`v1.0`](https://github.com/ilmilm/ace-pgkm10-c13-kernel/releases/tag/v1.0)** | `patched-lk.img` / `patched-vendor_boot.img` / `patched-boot.img` + `SHA256SUMS.txt` + `REPORT.md` | **刷这个** |
+| **[`stock-13.1.0.190`](https://github.com/ilmilm/ace-pgkm10-c13-kernel/releases/tag/stock-13.1.0.190)** | `boot.img` / `vendor_boot.img` / `lk.img` + `SHA256SUMS.txt` | 原版基线，回滚用 |
+
+两个 Release 里的资产 sha256 与本文档下面的表格逐一对应（GitHub 的 asset digest 字段已核对）。
+刷之前先 `sha256sum -c SHA256SUMS.txt`。
+
 ## 三个分区的关系
 
 ```
